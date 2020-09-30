@@ -1,0 +1,25 @@
+.MasterDiv {
+	width: 100vw;
+	height: 100vh;
+
+	> .BarsDiv {
+		width: 60%;
+		min-height: 850px;
+		justify-content: center;
+		border: 2px solid black;
+		display: flex;
+		justify-content: space-around;
+		margin: auto;
+
+		> div {
+			display: flex;
+			align-items: flex-end;
+			> .bar {
+				width: 15px;
+				background: rgb(84, 116, 150);
+				margin-right: 15px;
+				transition: height 0.05s ease;
+			}
+		}
+	}
+}
