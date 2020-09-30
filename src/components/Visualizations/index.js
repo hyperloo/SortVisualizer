@@ -19,7 +19,6 @@ function randomCreator() {
 class Visualizations extends Component {
 	state = {
 		arr: [],
-		tempArr: [],
 		tim: "50",
 	};
 
@@ -29,7 +28,7 @@ class Visualizations extends Component {
 	}
 
 	render() {
-		const { arr, tempArr, tim } = this.state;
+		const { arr, tim } = this.state;
 
 		const BarsArr = (arr) => {
 			var bars = [];
@@ -57,7 +56,6 @@ class Visualizations extends Component {
 				</div>
 				<div className="BarsDiv">
 					<div>{BarsArr(arr)}</div>
-					{/* <div>{BarsArr(tempArr)}</div> */}
 				</div>
 				<div className="ButtonsDiv">
 					<button onClick={() => window.location.reload(false)}>

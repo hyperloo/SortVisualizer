@@ -7,7 +7,6 @@ var len = 0;
 export default function quickSort(arr, bars) {
 	len = arr.length;
 	quickHelper(arr, 0, len);
-	console.log(swaps);
 	showAnimations(bars);
 }
 async function quickHelper(arr, l, h) {
@@ -55,10 +54,10 @@ async function showAnimations(bars) {
 	var p1 = -1,
 		p2 = -1,
 		p3 = -1,
-		p4 = -1,
-		p5 = -1;
+		p4 = -1;
 	for (var i = 0; i < swaps.length; ) {
 		await timeout(function () {
+			// eslint-disable-next-line
 			if (swaps[i][0] === 0) {
 				if (swaps[i][1] === 0) {
 					if (p1 !== -1) {
@@ -91,34 +90,3 @@ async function showAnimations(bars) {
 		});
 	}
 }
-
-/*// if (swaps[i][0] === 0) {
-// 	if (swaps[i][1] === 0) {
-// 		if (p1 !== -1) bars[p1].style.background = blue;
-// 		p1 = swaps[i][2];
-// 		bars[p1].style.background = yellow;
-// 	} else {
-// 		if (p5 !== -1) bars[p5].style.background = blue;
-// 		p5 = swaps[i][2];
-// 		bars[p5].style.background = yellow;
-// 	}
-// 	i++;
-// } else if (swaps[i][0] === 1) {
-// 	if (swaps[i][1] === 0) {
-// 		if (p2 !== -1) bars[p2].style.background = blue;
-// 		p2 = swaps[i][2];
-// 		bars[p2].style.background = red;
-// 	} else {
-// 		if (p3 !== -1) bars[p3].style.background = blue;
-// 		p3 = swaps[i][2];
-// 		bars[p3].style.background = orange;
-// 	}
-// 	i++;
-// } else {
-// 	bars[swaps[i][1]].style.height = `${swaps[i][2]}px`;
-// 	bars[swaps[i + 1][1]].style.height = `${swaps[i + 1][2]}px`;
-// 	bars[swaps[i][1]].style.background = blue;
-// 	bars[swaps[i + 1][1]].style.background = blue;
-// 	i += 2;
-// }
-*/

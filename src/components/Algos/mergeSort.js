@@ -14,7 +14,8 @@ async function showAnimations(bars) {
 
 	for (var i = 0; i < swaps.length; i++) {
 		var step = i % 2;
-		await timeout(() => {
+		await timeout(function () {
+			/* eslint-disable no-alert, no-console */
 			if (!step) {
 				p1 = swaps[i][0];
 				p2 = swaps[i][1];
@@ -25,6 +26,7 @@ async function showAnimations(bars) {
 				bars[p1].style.background = blue;
 				bars[p2].style.background = blue;
 			}
+			/* eslint-enable no-alert */
 		});
 	}
 }

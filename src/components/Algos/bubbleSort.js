@@ -32,6 +32,7 @@ async function showAnimations(bars) {
 	var p1, p2;
 
 	for (var i = 0; i < swaps.length; ) {
+		// eslint-disable-next-line
 		var step = i % 3;
 		await timeout(function () {
 			if (step === 0) {
