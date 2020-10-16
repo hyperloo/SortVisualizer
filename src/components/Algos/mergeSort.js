@@ -2,33 +2,46 @@ import timeout from "./timeout";
 import { red, blue } from "./colors";
 
 var swaps = [];
+var timeS = Date.now();
+var timeE;
 
-export default function mergeSort(arr, bars) {
+export default function mergeSort(arr, bars, reflectBack) {
+	document.getElementById("swaps").innerHTML = 0;
+	document.getElementById("comparisons").innerHTML = 0;
+	document.getElementById("time").innerHTML = 0;
 	const len = arr.length;
 	mergeHelper(arr, 0, len - 1);
-	showAnimations(bars);
+	showAnimations(bars, arr, reflectBack);
 }
 
-async function showAnimations(bars) {
+/* eslint-disable */
+async function showAnimations(bars, arr, reflectBack) {
 	var p1, p2;
 
-	for (var i = 0; i < swaps.length; i++) {
-		var step = i % 2;
-		await timeout(function () {
-			/* eslint-disable no-alert, no-console */
-			if (!step) {
-				p1 = swaps[i][0];
-				p2 = swaps[i][1];
-				bars[p1].style.background = red;
-				bars[p2].style.background = red;
-			} else {
+	var compare = 0;
+
+	var compareEl = document.getElementById("comparisons");
+
+	for (let i = 0; i < swaps.length; i++) {
+		if (i % 2 === 0) {
+			p1 = swaps[i][0];
+			p2 = swaps[i][1];
+			bars[p1].style.background = red;
+			bars[p2].style.background = red;
+			compare++;
+			compareEl.innerHTML = compare;
+		} else {
+			await timeout(function () {
 				bars[swaps[i][0]].style.height = `${swaps[i][1]}px`;
 				bars[p1].style.background = blue;
 				bars[p2].style.background = blue;
-			}
-			/* eslint-enable no-alert */
-		});
+			});
+		}
 	}
+	if (p1 && p1 !== -1) bars[p1].style.background = blue;
+	if (p2 && p2 !== -1) bars[p2].style.background = blue;
+	document.getElementById("time").innerHTML = timeE;
+	reflectBack(arr);
 }
 
 function mergeHelper(arr, st, en) {
@@ -38,6 +51,7 @@ function mergeHelper(arr, st, en) {
 	mergeHelper(arr, st, mid);
 	mergeHelper(arr, mid + 1, en);
 	merger(arr, st, mid, en);
+	timeE = parseFloat((((Date.now() - timeS) % 60000) / 1000).toFixed(1));
 }
 
 function merger(arr, st, mid, en) {
@@ -47,12 +61,11 @@ function merger(arr, st, mid, en) {
 	var a = arr.slice(st, mid + 1),
 		b = arr.slice(mid + 1, en + 1);
 
-	// console.log(st, mid, en, a, b);
-
 	while (i < mid - st + 1 && j < en - mid) {
 		swaps.push([st + i, mid + j + 1]);
 		if (a[i] < b[j]) {
 			swaps.push([k, a[i]]);
+			// swaps.push([st+i,])
 			arr[k++] = a[i++];
 		} else {
 			swaps.push([k, b[j]]);
@@ -70,3 +83,5 @@ function merger(arr, st, mid, en) {
 		arr[k++] = b[j++];
 	}
 }
+
+/* eslint-enable */

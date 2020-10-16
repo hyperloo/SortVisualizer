@@ -2,10 +2,15 @@ import timeout from "./timeout";
 import { red, blue } from "./colors";
 
 var swaps = [];
+var timeS = Date.now();
+var timeE;
 
-export default function bubbleSort(arr, bars) {
+export default function bubbleSort(arr, bars, reflectBack) {
+	document.getElementById("swaps").innerHTML = 0;
+	document.getElementById("comparisons").innerHTML = 0;
+	document.getElementById("time").innerHTML = 0;
 	bubbleHelper(arr);
-	showAnimations(bars);
+	showAnimations(bars, arr, reflectBack);
 }
 
 function bubbleHelper(arr) {
@@ -25,29 +30,43 @@ function bubbleHelper(arr) {
 			}
 		}
 	}
-	return swaps;
+	timeE = parseFloat((((Date.now() - timeS) % 60000) / 1000).toFixed(1));
 }
 
-async function showAnimations(bars) {
+/* eslint-disable */
+async function showAnimations(bars, arr, reflectBack) {
 	var p1, p2;
+	var swapsEl = document.getElementById("swaps");
+	var compareEl = document.getElementById("comparisons");
 
-	for (var i = 0; i < swaps.length; ) {
-		// eslint-disable-next-line
+	var swap = 0,
+		compare = 0;
+
+	for (let i = 0; i < swaps.length; ) {
 		var step = i % 3;
-		await timeout(function () {
-			if (step === 0) {
-				p1 = swaps[i][0];
-				p2 = swaps[i][1];
-				bars[p1].style.background = red;
-				bars[p2].style.background = red;
-				i++;
-			} else {
+		if (step === 0) {
+			p1 = swaps[i][0];
+			p2 = swaps[i][1];
+			bars[p1].style.background = red;
+			bars[p2].style.background = red;
+			compare++;
+			compareEl.innerHTML = compare;
+			i++;
+		} else {
+			await timeout(function () {
+				if (bars[swaps[i][0]].style.height !== `${swaps[i][1]}px`) swap++;
 				bars[swaps[i][0]].style.height = `${swaps[i][1]}px`;
 				bars[swaps[i + 1][0]].style.height = `${swaps[i + 1][1]}px`;
 				bars[p1].style.background = blue;
 				bars[p2].style.background = blue;
+				swapsEl.innerHTML = swap;
 				i += 2;
-			}
-		}, 100);
+			});
+		}
 	}
+	if (p1 !== -1) bars[p1].style.background = blue;
+	if (p2 !== -1) bars[p2].style.background = blue;
+	document.getElementById("time").innerHTML = timeE;
+	reflectBack(arr);
 }
+/* eslint-enable */

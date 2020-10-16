@@ -1,24 +1,190 @@
 .MasterDiv {
 	width: 100vw;
 	height: 100vh;
+	position: relative;
+	transition: all 0.3s ease;
 
-	> .BarsDiv {
-		width: 60%;
-		min-height: 850px;
-		justify-content: center;
-		border: 2px solid black;
+	#ButtonsDiv {
+		padding-top: 1rem;
 		display: flex;
-		justify-content: space-around;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+
+		button {
+			padding: 0.5rem 1rem;
+			color: white;
+			outline: none;
+			border: none;
+			border-radius: 3px;
+			margin: auto 0.1rem;
+			cursor: pointer;
+
+			a {
+				text-decoration: none;
+				color: white;
+			}
+
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+
+		button:disabled,
+		button[disabled] {
+			background-color: gray !important;
+		}
+	}
+
+	.container {
+		max-width: 1140px;
 		margin: auto;
+
+		@media (max-width: 1200px) {
+			max-width: 960px;
+		}
+		@media (max-width: 992px) {
+			max-width: 576px;
+		}
+		@media (max-width: 576) {
+			max-width: 100%;
+		}
+	}
+
+	> #input {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1rem;
 
 		> div {
 			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: white;
+
+			> span {
+				margin-right: 1rem;
+			}
+		}
+	}
+
+	> #BarsDiv {
+		height: 85vh;
+		position: relative;
+		justify-content: space-between;
+		border-bottom: 2px solid black;
+		display: flex;
+		align-items: flex-start;
+		margin: auto;
+
+		@media (max-width: 768px) {
+			font-size: 0.8rem !important;
+			> div {
+				margin: 0.15rem;
+				padding: 0.15rem;
+			}
+		}
+
+		> #stat {
+			margin: 0.25rem;
+			padding: 0.25rem;
+
+			> div {
+				width: 10rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				> span {
+					display: inline-block;
+					text-align: center;
+					margin: 0.1rem;
+					margin-left: auto;
+					padding: 0.2rem;
+					width: 3rem;
+					border: 1px solid black;
+				}
+				@media (max-width: 768px) {
+					width: 8rem;
+					> span {
+						padding: 0.1rem;
+						width: 2.25rem;
+					}
+				}
+			}
+		}
+
+		> #desc {
+			display: inline-block;
+			margin: 0.25rem;
+			padding: 0.25rem;
+
+			> div {
+				font-size: 0.9rem;
+
+				> span {
+					text-decoration: underline;
+				}
+
+				@media (max-width: 768px) {
+					font-size: 0.8rem;
+				}
+			}
+			> .name {
+				font-size: 1.1rem;
+				font-weight: bold;
+				text-decoration: underline;
+			}
+		}
+
+		#switch {
+			margin: 1rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-between;
+
+			> div {
+				border-radius: 50px;
+				width: 2.8rem;
+				height: 1.1rem;
+				background: white;
+				border: 2px solid red;
+				margin-top: 0.5rem;
+
+				> div {
+					width: 0.9rem;
+					height: 0.9rem;
+					border-radius: 50%;
+					margin: 0.1rem;
+					background-color: #1a2038;
+					transition: all 0.3s ease;
+				}
+
+				> .left {
+					margin-right: auto;
+				}
+				> .right {
+					margin-left: auto;
+				}
+			}
+		}
+
+		> #barContainer {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			display: flex;
 			align-items: flex-end;
+
 			> .bar {
-				width: 15px;
-				background: rgb(84, 116, 150);
-				margin-right: 15px;
-				transition: height 0.05s ease;
+				// min-width: 4px;
+				// max-width: 50px;
+				background: rgba(73, 144, 218, 0.6);
+				border: 1px solid rgb(84, 116, 150);
+				// margin-right: 2px;
 			}
 		}
 	}
