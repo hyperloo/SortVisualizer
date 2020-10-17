@@ -257,7 +257,7 @@ class Visualizations extends Component {
 						disabled={this.state.noRegenerate}
 					>
 						<a
-							href="/"
+							href="/SortVisualizer/"
 							style={{ pointerEvents: this.state.noRegenerate ? "none" : "" }}
 						>
 							Regenerate Array
