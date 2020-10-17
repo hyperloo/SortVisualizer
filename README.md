@@ -7,7 +7,7 @@
 
 <br/>
 
-This is the [Sorting Visualizing App](https://sortingalgovisualizer.netlify.app) built using Reactjs.
+This is the [Sorting Visualizing App](https://hyperloo.github.io/SortVisualizer) built using Reactjs.
 
 An App to make `Sorting Algos` understand easier.
 <br />
