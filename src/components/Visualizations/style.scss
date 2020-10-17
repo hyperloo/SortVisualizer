@@ -1,11 +1,9 @@
 .MasterDiv {
-	width: 100vw;
-	height: 100vh;
 	position: relative;
 	transition: all 0.3s ease;
 
 	#ButtonsDiv {
-		padding-top: 1rem;
+		margin: 1rem auto;
 		display: flex;
 		align-items: center;
 		justify-content: center;

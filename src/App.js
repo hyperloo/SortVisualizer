@@ -29,6 +29,31 @@ class App extends React.Component {
 				style={{ color: dark ? "white" : "#1a2038" }}
 			>
 				<Visualization dark={dark} toggle={this.toggle} />
+				<div
+					className="footer"
+					style={{
+						marginTop: "auto",
+						// width: "100vw",
+						textAlign: "center",
+						color: "white",
+						padding: "0.75rem 0",
+						backgroundColor: "#222945",
+					}}
+				>
+					Made with{" "}
+					<span role="img" aria-label="love">
+						❤️️
+					</span>{" "}
+					by {/* eslint-disable */}
+					<a
+						style={{ textDecoration: "none", color: "wheat" }}
+						href="https://tekhin3.netlify.app/"
+						target="_blank"
+					>
+						tekhin
+					</a>
+					{/* eslint-enable */}
+				</div>
 			</div>
 		);
 	}
